@@ -1,0 +1,211 @@
+﻿@media (max-width: 992px) {
+    #navbarNav {
+        display: none !important;
+    }
+    .brand-logo {
+        height: 40px;
+    }
+    .brand-text {
+        line-height: 0.5;
+    }
+    .brand-text-lg {
+        font-size: 0.8rem;
+    }
+    .llc-text {
+        font-size: 11px;
+    }
+    .sai-text {
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+    }
+    .header-img{
+        height:70px;
+    }
+    .hero-tagline p {
+        text-align: center;
+        margin: 2rem auto;
+    }
+
+    .hero-content {
+        text-align: center;
+        margin: 2rem auto;
+    }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+
+    .subpoints {
+        left: 30%;
+        width: auto;
+       
+    }
+
+    .services-section .row .col-md-3:first-child .service-item {
+        border-left: 3px solid #8fb84a;
+    }
+    .portfolio-img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    .contact-section {
+        height: 80vh;
+    }
+    .custom-btn {
+        position: static;
+        transform: none;
+        margin: 15px 10px 0;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .carousel-controls-wrapper {
+        text-align: center;
+        margin-top: 10px;
+    }
+    
+        .client-logo img {
+            width: 80%;
+            height: 80%;
+        }
+    .carousel-btn {
+        width: 25px;
+        height: 25px;
+    }
+    .client-section .carousel-btn i {
+        font-size: 1rem;
+    }
+    .client-section .prev-btn {
+        left: -15px;
+    }
+
+    .client-section .next-btn {
+        right: -15px;
+    }
+    .client-card img {
+        max-height: 60px;
+    }
+    .alt-testimonial-box,
+    .alt-testimonial-box.right,
+    .alt-testimonial-box.left {
+        flex-direction: column;
+        text-align: center;
+    }
+
+        .alt-testimonial-box::before {
+            display: none;
+        }
+
+    .text-content {
+        padding-left: 10px;
+    }
+    .alt-testimonial-box{
+        padding:15px;
+    }
+    .quote-mark {
+        top: -10px;
+        left: -10px;
+    }
+    .client-logo {
+        flex: 0 0 33.33%;
+    }
+    .contact-info-box {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        margin-bottom: 20px;
+        padding:20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-header {
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        background: #fff;
+    }
+    .partition-box {
+        display: flex;
+        flex-direction:column;
+    }
+    .nav-btn {
+        padding: 8px 12px;
+        font-size: 20px;
+    }
+}
+
+
+@media (max-width: 576px) {
+    .client-logo {
+        flex: 0 0 50%;
+    }
+    .contact-info-box {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+    .creative-hero-section {
+        height: auto;
+        padding: 60px 0;
+        min-height: 420px;
+    }
+
+    .masked-heading {
+        font-size: 2.4rem;
+        text-align: center;
+    }
+    .mails {
+        font-size: 16px !important;
+    }
+}
+
+
+@media (min-width: 768px) and (max-width: 1400px) {
+    .top-header .container-fluid {
+        flex-wrap: wrap; /* allows items to rearrange neatly */
+        gap: 10px; /* spacing between blocks */
+    }
+
+    .top-header .logo {
+        flex: 1 1 40%;
+    }
+
+    .top-header .cr-section,
+    .top-header .contact-nav-section {
+        flex: 1 1 25%;
+        text-align: right;
+    }
+
+    .top-header i {
+        padding: 10px !important; 
+    }
+
+    .brand-logo {
+        height: 45px !important;
+    }
+   
+}
+@media (min-width: 980px) and (max-width: 1420px) {
+    .contact-info-box {
+        position: absolute;
+        left: -100px;
+        width: auto;
+        padding: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+@media(max-width:400px){
+    .mails {
+        font-size: 14px !important;
+    }
+}

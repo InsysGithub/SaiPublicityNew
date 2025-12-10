@@ -1,0 +1,40 @@
+﻿@model List<SaiPublicity.Models.ProjectViewModel>
+@{
+    ViewData["Title"] = "Projects Portfolio";
+}
+
+<section class="breadcrumb-section py-5">
+    <div class="container">
+        <h2 class="montserrat-SemiBold  mb-3">Projects Portfolio</h2>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="/" class="text-decoration-none text-dark">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Projects Portfolio</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<div class="container py-5">
+    <div class="row g-5">
+        @foreach (var item in Model)
+        {         
+            <div class="col-md-4 col-sm-6" >
+                <a href="@Url.Action("ProjectDetail", "Project", new { categoryId = item.ProjectCategoryId,slug = item.ProjectSlug })"
+                   class="project-card">
+                    <div class="portfolio-item position-relative overflow-hidden rounded-5 shadow-sm ">
+                        <img src="~/uploads/project/@item.ProjectImage" alt="@item.ProjectName" class="img-fluid portfolio-img" />
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h5 class="montserrat-SemiBold mb-1 text-white">@item.ProjectCategory</h5>
+                            <div class="divider"></div>
+                            <p class="text-light small mb-0"><span class="">@item.ProjectName</span></p>
+                        </div>
+                    </div>
+                </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+

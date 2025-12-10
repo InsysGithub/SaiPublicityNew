@@ -1,0 +1,90 @@
+﻿@model SaiPublicity.Models.ProjectPageViewModel
+@{
+    ViewData["Title"] = Model.Category.ProjectCategory;
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+<div class="py-4 d-flex justify-content-between">
+    <h2 class=" text-info">@Model.Category.ProjectCategory</h2>
+    <div class="mb-3">
+        <a asp-action="Index" asp-area="AdminPanel" class="btn btn-secondary">Back to Categories</a>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 card p-4 mb-4">
+            <h5 class="fw-bold mb-3">Add New Project</h5>
+            <form asp-action="AddProject" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="ProjectCategoryId" value="@Model.CategoryId" />
+
+                <div class="mb-3">
+                    <label>Project Name</label>
+                    <input name="ProjectName" class="form-control" required />
+                </div>
+@* 
+                <div class="mb-3">
+                    <label>Project Date</label>
+                    <input type="date" name="ProjectDate" class="form-control" required />
+                </div>
+ *@
+                <div class="mb-3">
+                    <label>Upload Image</label>
+                    <input type="file" name="ImageFile" class="form-control" required/>
+                </div>
+
+                <button type="submit" class="btn btn-success">Add Project</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<!-- Project List -->
+<div class="card p-4">
+    <h5 class="fw-bold mb-3">Projects in this Category</h5>
+
+    @if (!Model.Projects.Any())
+    {
+        <div class="alert alert-warning">No projects added yet.</div>
+    }
+    else
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Projects)
+                {
+                    <tr>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.ProjectImage))
+                            {
+                                <img src="~/uploads/project/@item.ProjectImage" width="80" height="60" style="object-fit:cover;" />
+                            }
+                            else
+                            {
+                                <span>No Image</span>
+                            }
+                        </td>
+                        <td>@item.ProjectName</td>
+                        <td>@item.ProjectDate.ToString("dd-MMM-yyyy")</td>                                            
+                        <td>
+                            <a asp-action="EditProject" asp-route-id="@item.ProjectId" class="btn btn-primary btn-sm">Edit</a>
+                            <a asp-action="DeleteProject" asp-route-id="@item.ProjectId" asp-route-categoryId="@Model.CategoryId"
+                               onclick="return confirm('Delete this project?');" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

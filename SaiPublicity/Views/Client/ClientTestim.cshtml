@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Testimonials";
+}
+@model List<SaiPublicity.Models.TestimonialModel>
+
+<section class="breadcrumb-section py-5">
+    <div class="container">
+        <h2 class="montserrat-SemiBold  mb-3">Clients Testimonials</h2>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="/" class="text-decoration-none text-dark">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Clients Testimonials</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<section class="alt-testimonial-section py-5">
+    <div class="container">      
+        <div class="alt-testimonial-wrapper">
+            @foreach (var testim in Model)
+            {
+
+                <div class="alt-testimonial-box" data-aos="fade-right">
+                    <div class="text-content">
+                    <span class="quote-mark">
+                        &#10077;
+                    </span>
+                    <p>
+                            @testim.TestDesc
+                    </p>
+                    <h5>@testim.TestName</h5>
+                    <small>@testim.TestLocation</small>
+                </div>
+                <div class="testim-photo">
+                    <img src="~/uploads/testimonials/@testim.TestimProfile" alt="Client">
+                </div>
+            </div>
+            }
+           
+
+        </div>
+    </div>
+</section>

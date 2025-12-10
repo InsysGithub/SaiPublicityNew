@@ -1,0 +1,209 @@
+﻿@model List<SaiPublicity.Models.ProjectViewModel>
+@{
+    ViewData["Title"] = ViewBag.CategoryName;
+}
+
+<section class="breadcrumb-section py-5">
+    <div class="container">
+        <h2 class="montserrat-SemiBold mb-3">@ViewBag.CategoryName</h2>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="/" class="text-decoration-none text-dark">Home</a></li>
+                <li class="breadcrumb-item"><a asp-action="Index" class="text-decoration-none text-dark">Projects Portfolio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@ViewBag.CategoryName</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<div class="container py-5">
+    <div class="row g-5">
+        @foreach (var project in Model)
+        {
+            <div class="col-12 col-sm-6 col-md-4">
+
+                <div class="project-box" data-bs-toggle="modal" data-bs-target="#imageModal"
+                     onclick="openImage('/uploads/project/@project.ProjectImage', '@project.ProjectName')">
+                    <img src="~/uploads/project/@project.ProjectImage" alt="@project.ProjectName" />
+
+                    <div class="project-info">
+                        <h5>@project.ProjectName</h5>
+                    </div>
+                </div>
+
+            </div>
+        }
+    </div>
+</div>
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content bg-dark d-flex justify-content-center align-items-center position-relative">
+
+            <!-- Close Button -->
+            <button type="button" class="close-btn" data-bs-dismiss="modal">✕</button>
+
+            <!-- Prev Button -->
+            <button class="nav-btn prev" onclick="prevImage()">&#10094;</button>
+
+            <!-- Image -->
+            <img id="modalImage" class="lightbox-img" />
+
+            <!-- Next Button -->
+            <button class="nav-btn next" onclick="nextImage()">&#10095;</button>
+
+            <div id="modalTitle" class="img-caption"></div>
+        </div>
+    </div>
+</div>
+@{
+    var jsonImages = System.Text.Json.JsonSerializer.Serialize(
+        Model.Select(x => new { x.ProjectImage, x.ProjectName })
+    );
+}
+
+
+<script>
+       var images = @Html.Raw(jsonImages);
+    var currentIndex = 0;
+
+    function openImage(imagePath) {
+        let imageName = imagePath.split('/').pop();
+        currentIndex = images.findIndex(x => x.ProjectImage === imageName);
+
+        updateImage();
+    }
+
+    function updateImage() {
+        let img = "/uploads/project/" + images[currentIndex].ProjectImage;
+
+        document.getElementById("modalImage").src = img;
+        document.getElementById("modalTitle").innerHTML = images[currentIndex].ProjectName;
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateImage();
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateImage();
+    }
+
+</script>
+
+
+<style>
+    .project-box {
+        position: relative;
+        height: 350px;
+        overflow: hidden;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.4s ease-in-out;
+        background: #eee;
+        box-shadow: 0px 6px 18px rgba(0,0,0,0.1);
+    }
+
+        .project-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s ease-in-out;
+        }
+
+        .project-box:hover img {
+            transform: scale(1.15);
+            filter: brightness(0.6);
+        }
+
+    .project-info {
+        position: absolute;
+        bottom: -40px;
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+        transition: 0.4s ease-in-out;
+    }
+
+    .project-box:hover .project-info {
+        bottom: 20px;
+    }
+
+    .project-info h5 {
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        opacity: 0;
+        transition: 0.4s ease-in-out;
+        letter-spacing: 0.5px;
+    }
+
+    .project-box:hover .project-info h5 {
+        opacity: 1;
+    }
+
+    .modal-content {
+        background: rgba(0,0,0,0.7) !important;
+        border: none;
+    }
+
+    .lightbox-img {
+        max-height: 80vh;
+        max-width: 80vw;
+        object-fit: contain;
+        border-radius: 15px;
+    }
+
+    .nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 25px;
+        background: rgba(255,255,255,0.2);
+        color: white;
+        border: none;
+        padding: 12px 18px;
+        cursor: pointer;
+        border-radius: 40px;
+        transition: 0.3s;
+    }
+
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.7);
+            color: black;
+        }
+
+    .prev {
+        left: 20px;
+    }
+
+    .next {
+        right: 20px;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 26px;
+        background: white;
+        color: black;
+        border: none;
+        border-radius: 50%;
+        padding: 10px 14px;
+        cursor: pointer;
+    }
+
+    .img-caption {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        font-size: 18px;
+    }
+
+    
+</style>

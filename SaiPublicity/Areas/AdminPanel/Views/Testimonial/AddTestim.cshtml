@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Add | Testimonial";
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+@model SaiPublicity.Models.TestimonialModel
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Add Testimonial</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a>Dashboard</a></li>
+                    <li class="breadcrumb-item active">Add Testimonial </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="card card-success p-4">
+                    <div class="card-header mb-3">
+                        <h3 class="card-title">Add / Modify Testimonial</h3>
+                    </div>
+                    <form asp-action="AddTestim" method="post" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <label asp-for="TestName">Name</label>
+                            <input asp-for="TestName" class="form-control" />
+                            <span asp-validation-for="TestName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="TestDate" hidden>Date</label>
+                            <input asp-for="TestDate" class="form-control" type="date" hidden/>
+                            <span asp-validation-for="TestDate" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="TestLocation">Location</label>
+                            <input asp-for="TestLocation" class="form-control" />
+                            <span asp-validation-for="TestLocation" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="TestDesc">Description</label>
+                            <textarea asp-for="TestDesc" class="form-control"></textarea>
+                            <span asp-validation-for="TestDesc" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ImageFile">Upload Profile Image</label>
+                            <input asp-for="ImageFile" type="file" class="form-control" />
+                            <span asp-validation-for="ImageFile" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-success">Save</button>
+                        <a asp-area="AdminPanel" asp-controller="Testimonial" asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+

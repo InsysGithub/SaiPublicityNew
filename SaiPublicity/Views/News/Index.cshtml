@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "News";
+}
+<section class="breadcrumb-section py-5">
+    <div class="container">
+        <h2 class="montserrat-SemiBold  mb-3">News</h2>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="/" class="text-decoration-none text-dark">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">News</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-md-4" data-aos="zoom-out">
+                <a asp-controller="News" asp-action="NewsDetail" class="text-decoration-none text-dark">
+                    <div class="card  news-card border-0">
+                        <img src="~/images/Digital20Marketing20Careers.jpg" class="card-img-top rounded-5" alt="">
+                        <div class="card-body p-0 py-3">
+                            <h4>New LED Drive</h4>
+                            <p class="card-text font-sm">Sai Publicity & Advertising has introduced a vibrant LED billboard campaign across key city locations...</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4" data-aos="zoom-out">
+                <a href="#news" class="text-decoration-none text-dark">
+                    <div class="card  news-card border-0">
+                        <img src="~/images/digital-printing.jpg" class="card-img-top rounded-5" alt="" />
+                        <div class="card-body p-0 py-3">
+                            <h4>News Heading</h4>
+                            <p class="card-text font-sm">short discription about news/blogs. short discription about news/blogs</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4" data-aos="zoom-out">
+                <a href="#news" class="text-decoration-none text-dark">
+                    <div class="card  news-card border-0">
+                        <img src="~/images/Digital20Marketing20Careers.jpg" class="card-img-top rounded-5" alt="">
+                        <div class="card-body p-0 py-3">
+                            <h4>News Heading</h4>
+                            <p class="card-text font-sm">short discription about news/blogs. short discription about news/blogs</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>

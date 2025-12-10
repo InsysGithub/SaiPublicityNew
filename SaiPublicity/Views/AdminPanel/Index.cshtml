@@ -1,0 +1,81 @@
+﻿@model SaiPublicity.Models.AdminLoginModel
+
+<style>
+    header {
+        display: none;
+    }
+
+    footer {
+        display: none;
+    }
+
+    .login-card {
+        border: 2px solid #2E3192;
+        border-radius: 0.75rem;
+        max-width: 600px;
+        width: 100%;
+    }
+
+    .admin-page-logo {
+        height: 80px;
+        background: #fff;
+    }
+
+    .login-card input,
+    .login-card textarea {
+        border: 1px solid #8fb84a;
+        transition: all 0.3s ease;
+    }
+
+        .login-card input:focus,
+        .login-card textarea:focus {
+            border-color: #000;
+            box-shadow: none;
+        }
+</style>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-warning text-center text-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+<section class="admin-login-section d-flex align-items-center justify-content-center min-vh-100">
+    <div class="login-card p-5  bg-white">
+
+        <div class="text-center mb-4">
+                <img src="~/images/logo/sai-svg-logo.svg" alt="Sai Logo" class="brand-logo me-md-3 me-1 m-0">
+                <div class="text-center pt-3">
+                <p class="fs-4">
+                    Publicity & Advertising Company
+                </p>
+                </div>
+        </div>
+
+        <h2 class="text-center mb-4 ">Admin Login</h2>
+
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-danger text-center py-2">@ViewBag.Message</div>
+        }
+
+        <form method="post" asp-action="Index" asp-controller="AdminPanel">
+            <div class="mb-3">
+                <label asp-for="UserName" class="form-label fw-semibold">User Name</label>
+                <input asp-for="UserName" class="form-control custom-input" placeholder="Enter your username" required autofocus />
+                <span asp-validation-for="UserName" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="UserPassword" class="form-label fw-semibold">User Password</label>
+                <input asp-for="UserPassword" class="form-control custom-input" type="password" placeholder="Enter your password" required />
+                <span asp-validation-for="UserPassword" class="text-danger small"></span>
+            </div>
+
+            <div class="text-center">
+                <button class="custom-btn w-100 py-2 " type="submit">
+                    Login
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
