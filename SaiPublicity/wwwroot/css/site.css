@@ -1198,14 +1198,69 @@ html,body{
     }
 
     /* WhatsApp Contact Fixed button link */
+/* Existing WhatsApp button – keep as is */
 .whatsapp-float {
     position: fixed;
     bottom: 90px;
     right: 20px;
     z-index: 100;
-    cursor:pointer;
+    cursor: pointer;
 }
+
     .whatsapp-float .myImage {
-        width:50px !important;
-        height:50px !important;
+        width: 50px !important;
+        height: 50px !important;
     }
+
+/* Small WhatsApp popup */
+.wa-popup {
+    display: none;
+    position: fixed;
+    bottom: 150px; /* slightly above WhatsApp icon */
+    right: 20px;
+    z-index: 999;
+}
+
+/* Popup box */
+.wa-popup-content {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    min-width: 220px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    text-align: center;
+    position: relative;
+}
+
+    .wa-popup-content h6 {
+        margin-bottom: 12px;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    /* Buttons */
+    .wa-popup-content button {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 8px;
+        border: none;
+        border-radius: 6px;
+        background: #25d366;
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+        .wa-popup-content button:hover {
+            background: #1ebe5d;
+        }
+
+/* Close button */
+.wa-close {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #888;
+}

@@ -34,7 +34,7 @@
                     <div class="d-none d-md-flex align-items-center gap-3">
                         <span>
                             <i class="fa-solid fa-phone me-1 themeSecondary"></i>
-                            <a href="tel:+966561880515" class="text-decoration-none text-dark">+966 561880515</a>
+                        <a href="tel:+966545314481" class="text-decoration-none text-dark">+966 545314481</a>
                         </span>
                         <span>
                             <i class="fa-solid fa-phone me-1 themeSecondary"></i>
@@ -267,9 +267,29 @@
         </div>
     </footer>
     
-    <a onclick="sendWhatsApp()" title="Start quick chat on WhatApp" class="whatsapp-float">
+    @* <a onclick="sendWhatsApp()" title="Start quick chat on WhatApp" class="whatsapp-float">
         <img alt="" src="../images/whatsapp.png" class="myImage" />
     </a>
+ *@
+    <!-- WhatsApp Floating Button -->
+    <a href="javascript:void(0)" title="Start quick chat on WhatsApp"
+       class="whatsapp-float" onclick="openWhatsAppPopup()">
+        <img src="../images/whatsapp.png" alt="WhatsApp" class="myImage" />
+    </a>
+
+    <!-- WhatsApp Country Popup -->
+    <div id="whatsappPopup" class="wa-popup">
+        <div class="wa-popup-content">
+            <h6>Select Region</h6>
+            <button onclick="sendWhatsApp('saudi')">
+                Saudi Arabia
+            </button>
+            <button onclick="sendWhatsApp('bahrain')">
+                Bahrain
+            </button>
+            <span class="wa-close" onclick="closeWhatsAppPopup()">×</span>
+        </div>
+    </div>
 
     <button onclick="scrollToTop()" id="topBtn" title="Go to top">
         <i class="fa-solid fa-arrow-up"></i>
@@ -361,12 +381,32 @@
 
     <!-- Whatsapp -->
     <script>
-        function sendWhatsApp() {
+        function openWhatsAppPopup() {
+            document.getElementById("whatsappPopup").style.display = "flex";
+        }
+
+        function closeWhatsAppPopup() {
+            document.getElementById("whatsappPopup").style.display = "none";
+        }
+
+        function sendWhatsApp(area) {
+            let phone = "";
             let msg = "Hi, I’m interested in your services.";
-            let phone = "7339610953";
+
+            if (area === "saudi") {
+                phone = "966545314481";   // Saudi number
+            }
+            else if (area === "bahrain") {
+                phone = "97339610953";    // Bahrain number
+            }
+
+            //alert(phone);
             let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
             window.open(url, "_blank");
+
+            closeWhatsAppPopup();
         }
     </script>
+
 </body>
 </html>

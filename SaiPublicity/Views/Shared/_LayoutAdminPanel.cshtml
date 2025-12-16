@@ -57,6 +57,12 @@
                                 <p>Videos</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="AdminPanel" asp-action="ChangePassword" class="nav-link">
+                                <i class="nav-icon fas fa-lock"></i>
+                                <p>Change Password</p>
+                            </a>
+                        </li>
                       
                         <li class="nav-item">
                             <a asp-area="" asp-controller="AdminPanel" asp-action="Logout" class="nav-link" onclick="return confirm('Are you sure you want to logout?');">
@@ -89,5 +95,7 @@
     <script src="~/lib/adminlte/plugins/jquery/jquery.min.js"></script>
     <script src="~/lib/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/adminlte/dist/js/adminlte.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

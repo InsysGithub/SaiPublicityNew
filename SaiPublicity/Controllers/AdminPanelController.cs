@@ -64,6 +64,54 @@ namespace SaiPublicity.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            if (HttpContext.Session.GetString("UserName") == null)
+            {
+                TempData["ErrorMessage"] = "Please login first";
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ChangePassword(AdminChangePasswordModel model)
+        {
+            if (HttpContext.Session.GetString("UserName") == null)
+            {
+                TempData["ErrorMessage"] = "Please login first";
+                return RedirectToAction("Index");
+            }
+
+            string username = HttpContext.Session.GetString("UserName");
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            string currentPasswordInDb = _adminDAL.GetAdminPassword(username);
+
+            if (currentPasswordInDb != model.CurrentPassword)
+            {
+                ViewBag.Error = "Current password is incorrect.";
+                return View(model);
+            }
+
+            bool isUpdated = _adminDAL.UpdateAdminPassword(username, model.NewPassword);
+
+            if (isUpdated)
+            {
+                ViewBag.Success = "Password updated successfully !";
+            }
+            else
+            {
+                ViewBag.Error = "Something went wrong. Please try again.";
+            }
+
+            return View();
+        }
+
+
         [HttpGet]
         public IActionResult Logout()
         {

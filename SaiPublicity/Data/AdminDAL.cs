@@ -37,5 +37,35 @@ namespace SaiPublicity.Data
                 throw;
             }
         }
+
+        public string GetAdminPassword(string username)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                con.Open();
+                string query = "SELECT UserPassword FROM MasterAdmin WHERE UserName = @UserName AND DelMark = 0";
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@UserName", username);
+                    object result = cmd.ExecuteScalar();
+                    return result?.ToString();
+                }
+            }
+        }
+        public bool UpdateAdminPassword(string username, string newPassword)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                con.Open();
+                string query = "UPDATE MasterAdmin SET UserPassword = @NewPassword WHERE UserName = @UserName AND DelMark = 0";
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@UserName", username);
+                    cmd.Parameters.AddWithValue("@NewPassword", newPassword);
+                    int rows = cmd.ExecuteNonQuery();
+                    return rows > 0;
+                }
+            }
+        }
     }
 }
