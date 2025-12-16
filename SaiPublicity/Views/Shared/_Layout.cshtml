@@ -266,6 +266,10 @@
 
         </div>
     </footer>
+    
+    <a onclick="sendWhatsApp()" title="Start quick chat on WhatApp" class="whatsapp-float">
+        <img alt="" src="../images/whatsapp.png" class="myImage" />
+    </a>
 
     <button onclick="scrollToTop()" id="topBtn" title="Go to top">
         <i class="fa-solid fa-arrow-up"></i>
@@ -353,6 +357,16 @@
                 parent.classList.toggle('open');
             });
         });
+    </script>
+
+    <!-- Whatsapp -->
+    <script>
+        function sendWhatsApp() {
+            let msg = "Hi, I’m interested in your services.";
+            let phone = "7339610953";
+            let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
+            window.open(url, "_blank");
+        }
     </script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 using SaiPublicity.Data;
+using SaiPublicity.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseMiddleware<MaintenanceMiddleware>();
 
 app.UseAuthorization();
 

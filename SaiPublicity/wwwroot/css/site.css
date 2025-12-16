@@ -1197,3 +1197,15 @@ html,body{
         box-shadow: 0 0 0 0.2rem rgba(46,49,146,.2);
     }
 
+    /* WhatsApp Contact Fixed button link */
+.whatsapp-float {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    z-index: 100;
+    cursor:pointer;
+}
+    .whatsapp-float .myImage {
+        width:50px !important;
+        height:50px !important;
+    }

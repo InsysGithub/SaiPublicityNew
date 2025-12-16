@@ -31,7 +31,10 @@
         .login-card textarea:focus {
             border-color: #000;
             box-shadow: none;
-        }
+        }  
+    .admin-login-section .btn-primary{
+        background-color: #2E3192;
+    }
 </style>
 @if (TempData["ErrorMessage"] != null)
 {
@@ -72,7 +75,7 @@
             </div>
 
             <div class="text-center">
-                <button class="custom-btn w-100 py-2 " type="submit">
+                <button class="btn-primary rounded-3 w-50 py-2 " type="submit">
                     Login
                 </button>
             </div>
