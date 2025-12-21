@@ -13,7 +13,6 @@
         {
             //  WEBSITE DEADLINE
             var deadlineDate = new DateTime(2025, 12, 20);
-
             var path = context.Request.Path.Value?.ToLower();
 
             // Allow maintenance page itself

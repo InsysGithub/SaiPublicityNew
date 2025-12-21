@@ -36,7 +36,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseMiddleware<MaintenanceMiddleware>();
+//app.UseMiddleware<MaintenanceMiddleware>();
 
 app.UseAuthorization();
 
