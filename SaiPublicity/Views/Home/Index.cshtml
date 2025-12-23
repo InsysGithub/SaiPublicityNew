@@ -161,7 +161,7 @@
         <div class="row g-4 mt-1" id="projectGrid">
              @foreach (var item in Model)
         {         
-            <div class="col-md-4 col-sm-6" data-aos="zoom-out">
+            <div class="col-md-3 col-sm-6" data-aos="zoom-out">
                 <a href="@Url.Action("ProjectDetail", "Project", new { categoryId = item.ProjectCategoryId, slug = item.ProjectSlug })">
                     <div class="portfolio-item position-relative overflow-hidden rounded-5 shadow-sm ">
                     <img src="~/uploads/project/@item.ProjectImage" alt="@item.ProjectName" class="img-fluid portfolio-img" />

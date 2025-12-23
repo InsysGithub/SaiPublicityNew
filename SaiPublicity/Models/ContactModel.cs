@@ -14,7 +14,8 @@ namespace SaiPublicity.Models
         [Required(ErrorMessage = "Phone Number is required")]
         public string PhoneNo { get; set; }
 
-        public string Subject { get; set; }
+
+        public string? Subject { get; set; }
 
         [Required(ErrorMessage = "Message is required")]
         public string Message { get; set; }

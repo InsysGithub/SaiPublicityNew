@@ -21,7 +21,7 @@ public class HomeController : Controller
         var latestProjects = _projectDAL
                          .GetLatestProjectsByCategory()
                          .OrderBy(x => Guid.NewGuid())   // Shuffle
-                         .Take(3)
+                         .Take(8)
                          .ToList();
 
         return View(latestProjects);

@@ -1,5 +1,6 @@
 using SaiPublicity.Data;
 using SaiPublicity.Middleware;
+using SaiPublicity.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,8 @@ builder.Services.AddScoped<AdminDAL>();
 builder.Services.AddScoped<TestimonialDAL>();
 builder.Services.AddScoped<VideoDAL>();
 builder.Services.AddScoped<ProjectDAL>();
+
+builder.Services.AddScoped<EmailService>();
 
 builder.Services.AddRouting(options =>
 {

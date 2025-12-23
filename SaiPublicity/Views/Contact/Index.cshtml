@@ -1,6 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Contact Us";
+    var successMessage = TempData["SuccessMessage"] as string;
+    var errorMessage = TempData["ErrorMessage"] as string;
 }
+@model SaiPublicity.Models.ContactModel 
+
 <section class="breadcrumb-section py-5">
     <div class="container">
         <h2 class="montserrat-SemiBold  mb-3">Contact</h2>
@@ -16,7 +20,7 @@
 <section class="py-5 bg-contact-page">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-10 p-4 p-lg-5 contact-box shadow-sm">
+            <div id="contactPage" class="col-lg-10 p-4 p-lg-5 contact-box shadow-sm">
 
                 <div class="row g-4">
                     <div class="col-lg-4 position-relative" data-aos="fade-right">
@@ -57,27 +61,54 @@
                         <div class="contact-form">
                             <h3 class="montserrat-regular mb-4">Get in Touch</h3>
 
-                            <form>
+                            <form asp-controller="Contact" asp-action="Index"
+                                  method="post" enctype="multipart/form-data"
+                                  id="contactForm">
+                                @Html.AntiForgeryToken()
                                 <div class="row g-3">
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control rounded-3" placeholder="Full Name" required>
+                                        <input asp-for="FullName" class="form-control rounded-3" placeholder="Full Name" required>
+                                        <span asp-validation-for="FullName" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="email" class="form-control rounded-3" placeholder="Email Address" required>
+                                        <input asp-for="Email" class="form-control rounded-3" placeholder="Email Address" required>
+                                        <span asp-validation-for="Email" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control rounded-3" placeholder="Mobile Number" required>
+                                        <input asp-for="PhoneNo"
+                                               class="form-control rounded-3"
+                                               placeholder="Mobile Number"                                             
+                                               inputmode="numeric"
+                                               oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                               required>
+                                        <span asp-validation-for="PhoneNo" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control rounded-3" placeholder="Subject" required>
+                                        <input asp-for="Subject" class="form-control rounded-3" placeholder="Subject" >
+                                        <span asp-validation-for="Subject" class="text-danger"></span>
                                     </div>
                                     <div class="col-12">
-                                        <textarea class="form-control rounded-3" rows="4" placeholder="Your Message" required></textarea>
+                                        <textarea asp-for="Message" class="form-control rounded-3" rows="4" placeholder="Your Message" required></textarea>
+                                        <span asp-validation-for="Message" class="text-danger"></span>
                                     </div>
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-light rounded-3 px-4 py-2">
+                                        <input type="hidden" asp-for="RecaptchaToken" />
+                                        <div class="g-recaptcha" data-sitekey="6LdYQTMsAAAAADh2E3NBovEQC5GyheHVXXVO-Tlb"></div>
+                                        <span asp-validation-for="RecaptchaToken" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" id="submitBtn" class="btn btn-light rounded-3 px-4 py-2">
                                             Submit
                                         </button>
+
+                                        @if (!string.IsNullOrEmpty(successMessage))
+                                        {
+                                            <p class="text-success mt-2">@successMessage</p>
+                                        }
+                                        @if (!string.IsNullOrEmpty(errorMessage))
+                                        {
+                                            <p class="text-danger mt-2">@errorMessage</p>
+                                        }
                                     </div>
                                 </div>
                             </form>
@@ -91,3 +122,20 @@
         </div>
     </div>
 </section>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var form = document.getElementById("contactForm");
+            var submitBtn = document.getElementById("submitBtn");
+
+            if (form && submitBtn) {
+                form.addEventListener("submit", function () {
+
+                    submitBtn.innerHTML = "Submitting...";
+                    submitBtn.disabled = true;
+                });
+            }
+        });
+    </script>
+}
